@@ -1,0 +1,106 @@
+//Flex column
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+//flex-column-center
+@mixin flex-column-align-center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+//flex-align-center
+@mixin flex-align-center {
+    display: flex;
+    align-items: center;
+}
+//flex-center
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+//flex-justify-center
+@mixin flex-justify-center {
+    display: flex;
+    justify-content: center;
+}
+//flex-space-between
+@mixin flex-center-space-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+//flex-row
+@mixin flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+// Mixin cho Media Query
+@mixin respond-to($breakpoint) {
+    @if $breakpoint ==sm {
+        @media (max-width: $breakpoint-md) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==md {
+        @media (min-width: $breakpoint-md) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==lg {
+        @media (min-width: $breakpoint-lg) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==xl {
+        @media (min-width: $breakpoint-xl) {
+            @content;
+        }
+    }
+}
+
+/* Common Media */
+@mixin media-query($property, $sm, $md, $lg, $xl: null) {
+    #{$property}: $sm;
+
+    @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+        #{$property}: $md;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        #{$property}: $lg;
+    }
+
+    @if $xl !=null {
+        @media (min-width: $breakpoint-xl) {
+            #{$property}: $xl;
+        }
+    }
+}
+
+//Button
+@mixin button-style($color, $background-color, $border-radius, $padding, $border: none, $width, $height) {
+    color: $color;
+    background-color: $background-color;
+    border-radius: $border-radius;
+    padding: $padding;
+    border: $border;
+    min-width: $width;
+    max-height: $height;
+}
+
+//Box-shadow
+@mixin box-shadow {
+    box-shadow: 0 10px 60px #0000001a;
+
+}
