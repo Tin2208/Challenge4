@@ -1,0 +1,311 @@
+.footer {
+    background-color: $background-secondary-hover;
+    @include flex-justify-center;
+
+    .footer__container {
+        @include media-query(max-width, 363px, 714px, 714px, 1115px);
+        @include flex-column-align-center;
+        @include media-query(padding-top, 60px, 60px, 70px, 80px);
+        gap: 50px;
+        @include media-query(gap, 50px, 60px, 70px, 80px);
+
+    }
+
+    .footer__contact {
+        @include flex-column;
+        @include media-query(gap, 30px, 30px, 40px, 40px);
+
+        @include respond-to(xl) {
+            flex-direction: unset;
+        }
+
+        .footer__brand {
+            @include flex-column;
+            @include media-query(gap, 20px, 20px, 24px, 24px);
+
+            @include respond-to(xl) {
+                width: 25%;
+            }
+
+            p {
+                color: $dark-gray-color;
+                @include media-query(font-size, 15px, 15px, 18px, 18px);
+
+            }
+
+            .footer__subscribe {
+                padding: 5px;
+                position: relative;
+
+                input {
+                    font-size: 16px;
+                    @include media-query(width, 100%, 70%, 70%, 100%);
+                    border-radius: 10px;
+                    border: none;
+                    padding: 22px 0 22px 20px
+                }
+
+                button {
+                    cursor: pointer;
+                    border: none;
+                    padding: 16px;
+                    background-color: $primary-color;
+                    border-radius: 10px;
+                    position: absolute;
+                    right: 10px;
+                    @include media-query(right, 10px, 222px, 222px, 10px);
+                    top: 12%;
+
+                    &:hover {
+                        background-color: $background-hover-color;
+                        transition: background-color 0.3s ease;
+
+                        img {
+                            transform: rotate(45deg); // Xoay 45 độ
+                            transition: transform 0.5s ease;
+
+                        }
+                    }
+
+
+                    img {
+                        width: 20.5px;
+                        // padding: 16px
+                    }
+                }
+            }
+        }
+    }
+
+    .footer__links {
+        @include flex-column;
+        gap: 20px;
+
+        @include respond-to(md) {
+            flex-direction: unset;
+
+        }
+
+        .footer__column {
+            @include media-query(font-size, 18px, 20px, 20px, 20px);
+            color: $primary-text-color;
+            @include flex-column;
+            @include media-query(gap, 16px, 24px, 24px, 24px);
+
+            @include respond-to(md) {
+                width: 20%;
+
+            }
+
+            .footer__list {
+                @include flex-column;
+                @include media-query(gap, 8px, 12px, 12px, 12px);
+
+                li {
+                    a {
+                        color: $dark-gray-color;
+                        @include media-query(font-size, 15px, 16px, 16px, 16px)
+                    }
+
+                }
+            }
+
+            p {
+                color: $dark-gray-color;
+                @include media-query(font-size, 15px, 16px, 16px, 16px);
+                font-family: $font-family-secondary;
+            }
+
+            .footer__email,
+            .footer_phone-number {
+                @include flex-align-center;
+                gap: 10px;
+
+
+                img {
+                    width: 20px;
+                    height: 20px
+                }
+            }
+        }
+
+        .footer__column:nth-child(4) {
+            @include flex-column;
+            gap: 16px;
+
+            @include respond-to(md) {
+                width: 31%;
+            }
+
+        }
+    }
+
+
+
+    .footer__line {
+        background-color: $border-color;
+        height: 1px;
+        width: 100%;
+        @include flex-center;
+
+    }
+
+    .footer__scroll {
+        @include flex-column-align-center;
+        width: 100%;
+        position: relative;
+    }
+
+    .footer__scroll-up {
+        cursor: pointer;
+        @include media-query(width, 9%, 6%, 6%, 6%);
+        aspect-ratio: 1 / 1;
+        @include flex-center;
+        background-color: $secondary-color;
+        border-radius: 7px;
+
+        button {
+            background-color: $secondary-color;
+            border: none;
+
+            img {
+                position: relative;
+                /* Để sử dụng thuộc tính top */
+                animation: moveUpDown 2s infinite ease-in-out;
+            }
+        }
+
+    }
+
+    .footer__agency {
+        @include flex-justify-center;
+
+        .agency__container {
+            .agency__content {
+                background-image: url(https://framerusercontent.com/images/luBvnsVeHjVVue4cIK3wPUtkTI.svg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                @include media-query(padding, 30px 40px, 40px, 60px 80px);
+
+                @include respond-to(md) {
+                    position: relative;
+
+                }
+
+                @include respond-to(xl) {
+                    flex-direction: row;
+                    background-size: 41% 100%;
+                    background-position: right center;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+
+                background-color: $secondary-color;
+                text-align: center;
+                @include flex-column;
+                // padding: 30px;
+                gap: 24px;
+                border-radius: 20px;
+
+                .agency__header {
+                    position: relative;
+
+                    @include respond-to(md) {
+                        background-image: unset;
+                    }
+
+                    @include flex-column;
+                    gap: 16px;
+
+                    @include respond-to(xl) {
+                        width: 60%;
+                        text-align: start;
+                    }
+                }
+
+                h2 {
+                    @include moveLeft(1s, 0.3s, ease);
+
+                    br {
+                        display: none;
+
+                        @include respond-to(md) {
+                            display: block;
+                        }
+                    }
+                }
+
+                .agency__description {
+                    @include moveLeft(1s, 0.5s, ease);
+
+                    font-family: $font-family-secondary;
+                    @include media-query(font-size, 16px, 18px, 18px, 18px);
+
+                }
+
+            }
+
+            .agency__cta {
+                @include moveRight(1s, 0.3s, ease);
+
+                @include flex-column-align-center;
+                gap: 20px;
+                text-align: center;
+
+                button {
+                    cursor: pointer;
+                    @include flex-align-center;
+                    gap: 7px;
+                    background-color: $primary-color;
+                    padding: 14px 24px;
+
+                    @include respond-to(xl) {
+                        padding: 18px 32px;
+                    }
+
+                    border-radius: 20px;
+                    color: $secondary-color;
+                    @include media-query(font-size, 18px, 20px, 20px, 20px);
+                    border: none;
+
+                    &:hover {
+                        background-color: $background-hover-color;
+                        transition: background-color 0.3s ease;
+
+                        img {
+                            transform: rotate(45deg); // Xoay 45 độ
+                            transition: transform 0.5s ease;
+
+                        }
+                    }
+
+                    img {
+                        width: 20.5px;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer__bottom {
+        @include media-query(font-size, 15px, 16px, 16px, 16px);
+        padding: 40px 0 20px;
+    }
+}
+
+@keyframes moveUpDown {
+    0% {
+        top: 0;
+        /* Vị trí ban đầu */
+    }
+
+    50% {
+        top: 5px;
+        /* Di chuyển xuống */
+    }
+
+    100% {
+        top: 0;
+        /* Trở lại vị trí ban đầu */
+    }
+}

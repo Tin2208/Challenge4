@@ -19,6 +19,11 @@
         }
 
         .text-section {
+            // animation: moveUp 1s ease-out 1;
+            // /* Thời gian 1.5 giây, chạy 1 lần */
+            // opacity: 0;
+            // /* Ẩn ban đầu để hiệu ứng xuất hiện mượt */
+            // animation-fill-mode: forwards;
             @include flex-column;
             text-align: center;
             row-gap: 24px;
@@ -34,12 +39,15 @@
                 row-gap: 16px;
 
                 span {
+                    @include moveUp(1s, 0.3s, ease);
                     @include media-query(font-size, 18px, 20px, 20px, 20px);
                     color: $primary-color;
                     font-weight: $font-weight-bold;
                 }
 
                 h1 {
+                    @include moveUp(1s, 0.5s, ease);
+
                     @include media-query(font-size, 40px, 56px, 56px, 56px);
                     color: $primary-text-color;
                     font-weight: $font-weight-bold;
@@ -48,6 +56,9 @@
             }
 
             .text-content {
+                @include moveUp(1s, 0.8s, ease);
+
+
                 p {
                     font-size: 18px;
                     color: $dark-gray-color;
@@ -59,6 +70,8 @@
             }
 
             .business__btn {
+                @include moveUp(1s, 1s, ease);
+
                 @include flex-column-align-center;
                 row-gap: 12px;
                 transition: background-color 0.3s ease;
@@ -78,6 +91,7 @@
 
                     &:hover {
                         background-color: $background-hover-color;
+                        transition: background-color 0.5s ease;
 
                         a {
                             .services--icon {
@@ -105,12 +119,13 @@
                     @include button-style($secondary-text-color, $secondary-color, 18px, 14px 24px, 2px, auto, 55px);
                     font-weight: $font-weight-bold;
                     @include media-query(font-size, 18px, 20px, 20px, 20px);
-                    border-color: rgba(10, 17, 40, 0.1);
+                    border-color: $dark-navy;
                     border-style: solid;
                     cursor: pointer;
 
                     &:hover {
                         background-color: $background-secondary-hover;
+                        transition: background-color 0.5s ease;
 
                         a {
                             .about--icon {
@@ -137,10 +152,14 @@
         }
 
         .image-section {
+            @include moveUp(1s, 0.3s, ease);
+
+            background-image: url(https://framerusercontent.com/images/bnxWRS4KhyXiEJVQUsjE94g.svg);
             position: relative;
             @include media-query(max-width, 363px, 714px, 714px, 512.5px);
 
             .users {
+
                 width: 100%;
                 @include flex-justify-center;
 
@@ -151,6 +170,8 @@
             }
 
             .badge {
+                @include moveLeft(1s, 0.5s, ease);
+
                 position: absolute;
                 @include flex-align-center;
                 gap: 10px;
@@ -195,10 +216,10 @@
                     }
 
                     .user3 {
-                        transform: translate(-3px, 0);
+                        transform: translate(-5px, 0);
 
                         @include respond-to(xl) {
-                            transform: translate(-11px, 0);
+                            transform: translate(-12px, 0);
 
                         }
 
@@ -220,6 +241,8 @@
             }
 
             .rating {
+                @include moveRight(1s, 0.5s, ease);
+
                 background-color: $secondary-color;
                 padding: 8px;
                 @include flex-center-space-between;
@@ -279,12 +302,9 @@
         @include media-query(max-width, 363px, 714px, 714px, 1115px);
         @include media-query(padding, 40px 20px, 60px 40px, 60px 40px, 80px 80px);
         border-radius: 20px;
-        border: solid 2px #0a112866;
+        border: solid 2px $border-color;
 
         h2 {
-            color: $secondary-text-color;
-            font-size: 30px;
-            @include media-query(font-size, 30px, 36px, 36px, 48px);
             width: 80%;
             line-height: 1.2em;
 
@@ -309,6 +329,7 @@
             .feature {
                 @include flex-column;
                 gap: 24px;
+                cursor: pointer;
 
                 &:last-child {
                     display: none;
@@ -469,6 +490,8 @@
                         @include media-query(width, 60%, 43%, 43%, 43%);
 
                         .image__overlay-bar {
+                            @include moveLeft(1s, 0.5s, ease);
+
                             box-shadow: 0 12px 48px #0000001a;
                             border-radius: 10px;
 
@@ -506,11 +529,6 @@
                 .aiTools__subtitle {
                     @include flex-column;
                     gap: 30px;
-
-                    h2 {
-                        @include media-query(font-size, 30px, 36px, 36px, 48px);
-                        color: $primary-text-color;
-                    }
 
                     p {
                         @include media-query(font-size, 16px, 18px, 18px, 18px);
@@ -570,10 +588,12 @@
         gap: 30px;
 
 
-        h1 {
-            @include media-query(font-size, 30px, 36px, 36px, 48px);
-            color: $primary-text-color;
+        h2 {
             text-align: center;
+
+            @include respond-to(xl) {
+                text-align: left
+            }
         }
 
         ul {
@@ -595,7 +615,7 @@
 
             h6 {
                 @include media-query(font-size, 16px, 18px, 18px, 18px);
-
+                cursor: pointer;
             }
         }
     }
@@ -618,8 +638,22 @@
             border: solid 1px rgba(10, 17, 40, 0.4);
             border-radius: 10px;
 
+            .item--img {
+                overflow: hidden;
+                border-radius: 10px;
+
+            }
+
             img {
                 border-radius: 10px;
+                transition: transform 0.3s ease;
+                transform-origin: center;
+                cursor: pointer;
+                overflow: hidden;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
 
             .projects__content {
@@ -653,6 +687,11 @@
             font-size: 16px;
             font-family: $font-family-secondary;
             font-weight: 700;
+            transition: background-color 0.5s ease;
+
+            &:hover {
+                background-color: $background-hover-color;
+            }
         }
     }
 
@@ -662,6 +701,11 @@
 .testimonials {
     @include flex-justify-center;
     background-color: $primary-backgound-color;
+
+    @include respond-to(xl) {
+        padding-bottom: 100px;
+    }
+
 
     .testimonials__container {
         border-radius: 20px;
@@ -673,16 +717,32 @@
         gap: 30px;
         padding: 60px 0;
 
+        @include respond-to(xl) {
+            flex-direction: unset;
+            padding: 100px 80px;
+        }
+
+
+
         .testimonials__header {
             padding: 0 20px;
             @include flex-column;
             gap: 30px;
 
+            @include respond-to(xl) {
+                width: 54%;
+                padding: 0;
+            }
+
             .testimonials__title {
                 h1 {
                     color: $fourth-color;
                     @include media-query(font-size, 30px, 36px, 36px, 48px);
-                    text-align: center
+                    text-align: center;
+
+                    @include respond-to(xl) {
+                        text-align: left
+                    }
                 }
             }
 
@@ -690,10 +750,21 @@
                 @include flex-column-align-center;
                 gap: 24px;
 
+                @include respond-to(xl) {
+                    align-items: unset;
+                }
+
                 .testimonials__author {
                     @include flex-column-align-center;
                     text-align: center;
                     gap: 12px;
+
+                    @include respond-to(xl) {
+
+                        flex-direction: unset;
+
+                    }
+
 
                     .testimonials__authorIcon {
 
@@ -705,23 +776,57 @@
                     }
 
                     .testimonials__authorDetails {
-                        color: $secondary-color;
-                        @include media-query(font-size, 20px, 22px, 22px, 22px);
+                        @include respond-to(xl) {
+                            flex-direction: unset;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        h4 {
+                            display: none;
+                            color: $secondary-color;
+                            @include media-query(font-size, 20px, 22px, 22px, 24px !important);
+
+                            @include respond-to(xl) {
+                                display: flex;
+                                padding: 10px;
+                            }
+                        }
+
+                        h3 {
+
+                            color: $secondary-color;
+                            @include media-query(font-size, 20px, 22px, 22px, 24px !important);
+                        }
 
                     }
                 }
+
+                .testimonials__description {}
 
                 p {
                     color: $secondary-color;
                     @include media-query(font-size, 16px, 18px, 18px, 18px);
                     text-align: center;
-                    ;
+
+                    @include respond-to(xl) {
+                        text-align: left
+                    }
+
                 }
 
                 .testimonials__rating {
                     @include flex-center;
                     flex-direction: column;
                     gap: 12px;
+
+
+
+                    @include respond-to(xl) {
+                        flex-direction: unset;
+                        justify-content: unset;
+                    }
 
                     .tesimonials__stats {
                         @include flex-center;
@@ -738,6 +843,7 @@
                     span {
                         color: $primary-color;
                         @include media-query(font-size, 16px, 18px, 18px, 18px);
+
 
                     }
                 }
@@ -756,11 +862,13 @@
             @include flex-column-align-center;
 
             img {
-                @include media-query(width, 76%, 83%, 83%, 60%);
+                @include media-query(width, 76%, 83%, 83%, 81%);
                 border-radius: 10px;
             }
 
             .imageWrapper__badge {
+                @include moveLeft(1s, 0.5s, ease);
+
                 background-color: $primary-color;
                 display: flex;
                 position: absolute;
@@ -775,7 +883,7 @@
                 }
 
                 @include box-shadow;
-                @include media-query(top, 15%, 15%, 18%, 30%);
+                @include media-query(top, 15%, 15%, 18%, 20%);
                 left: 0;
 
                 .imageWrapper--title {
@@ -831,6 +939,8 @@
 
             .testimonials__pageScore {
                 img {
+                    @include moveRight(1s, 0.5s, ease);
+
                     position: absolute;
                     right: 0;
                     width: 46%;
@@ -838,5 +948,466 @@
                 }
             }
         }
+    }
+}
+
+.pricing {
+    @include flex-justify-center;
+
+    .pricing__container {
+        @include media-query(padding, 60px 0, 60px 0, 70px 0, 100px 0);
+
+        @include media-query(max-width, 363px, 714px, 714px, 1115px);
+        @include flex-column;
+        gap: 40px;
+
+        .pricing__header {
+            @include flex-column;
+            gap: 16px;
+            text-align: center;
+
+            @include respond-to(md) {
+                flex-direction: unset;
+                align-items: center;
+                text-align: unset
+            }
+
+            @include respond-to(xl) {
+                justify-content: space-between;
+            }
+
+            .pricing__title {
+                width: 52%;
+
+                h5 {
+                    @include media-query(font-size, 18px, 20px, 20px, 20px);
+                    color: $dark-gray-color;
+                }
+            }
+
+
+
+            .pricing__toggle {
+                position: relative;
+                @include flex-justify-center;
+                align-items: center;
+                gap: 16px;
+
+                .pricing__discount {
+                    @include flex-column-align-center;
+
+                    span {
+                        @include media-query(font-size, 20px, 20px, 20px, 20px);
+                        color: $dark-gray-color;
+                        font-family: $font-family-secondary;
+
+                    }
+
+                    img {
+                        position: absolute;
+                        top: 25px;
+                    }
+                }
+
+                h4 {
+                    @include media-query(font-size, 18px, 20px, 20px, 22px);
+
+                }
+
+                .pricing__check {
+                    width: 50px;
+                    height: 24px;
+                    background-color: $primary-color;
+                    border-radius: 12px;
+
+                    .check--circle {
+                        width: 20px;
+                        height: 20px;
+                        background-color: $secondary-color;
+                        border-radius: 50px;
+                        transform: translate(1px, 2px);
+                    }
+                }
+            }
+        }
+
+        .pricing__plans {
+            @include moveUp(1s, 0.3s, ease);
+
+            position: relative;
+            gap: 30px;
+            @include flex-column;
+
+            @include respond-to(md) {
+                display: grid;
+                grid-auto-rows: min-content;
+                grid-template-columns: repeat(2, minmax(50px, 1fr))
+            }
+
+            @include respond-to(lg) {
+                flex-direction: column;
+            }
+
+            @include respond-to(xl) {
+                flex-direction: row;
+                display: flex;
+                justify-content: space-between;
+            }
+
+
+
+            .pricing__standard {
+                @include moveUp(1s, 0.5s, ease);
+
+                position: relative;
+                top: -20px;
+            }
+
+            .pricing__plan-package {
+                background-color: #0a1128;
+                color: $secondary-color;
+                @include media-query(font-size, 16px, 18px, 20px, 22px);
+                font-weight: $font-weight-bold;
+                padding: 15px 0;
+                text-align: center;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+                position: relative;
+                z-index: 0;
+            }
+
+            .pricing__plan--regular,
+            .pricing__plan--premium,
+            .pricing__plan--standard {
+                height: min-content;
+                @include flex-column;
+                padding: 30px;
+
+                @include respond-to(xl) {
+                    padding: 50px 40px 40px;
+                }
+
+                gap: 24px;
+
+                @include respond-to(xl) {
+                    gap: 32px;
+                }
+
+                border-radius: 20px;
+                border: 1px solid rgba(10, 17, 41, 0.4);
+
+
+
+                .pricing__plan-header {
+                    @include flex-column;
+                    gap: 16px;
+
+                    span {
+                        padding: 2.5px 12.5px;
+                        background-color: $Light-Coral;
+                        color: $background-hover-color;
+                        font-size: 20px;
+                        font-weight: 600;
+                        border-radius: 7px;
+                    }
+
+                    p {
+                        color: $dark-gray-color;
+                        @include media-query(font-size, 16px, 18px, 18px, 18px);
+
+                    }
+                }
+
+                ul {
+                    @include flex-column;
+                    gap: 16px;
+                    padding: 0 17px;
+
+                    :nth-child(4),
+                    :nth-child(5) {
+                        opacity: 0.5;
+                    }
+
+                    li {
+                        color: $third-text-color;
+                        font-size: 18px;
+                        list-style: disc;
+                        font-family: $font-family-secondary;
+                    }
+
+                    li::marker {
+                        color: $primary-color;
+                    }
+                }
+
+                .pricing__line {
+                    background-color: $dark-navy;
+                    height: 1px;
+                    width: 100%;
+                }
+
+                .pricing__price {
+                    display: flex;
+                    align-items: baseline;
+
+                    h5 {
+                        @include media-query(font-size, 30px, 36px, 36px, 48px);
+                        color: $third-text-color;
+                    }
+
+                    span {
+                        color: $dark-gray-color;
+                        @include media-query(font-size, 16px, 18px, 18px, 18px);
+                    }
+                }
+
+                .pricing__button {
+                    background-color: $primary-color;
+                    padding: 14px 24px;
+                    border-radius: 20px;
+                    @include flex-center;
+                    gap: 7px;
+                    color: $secondary-color;
+                    font-weight: $font-weight-bold;
+                    @include media-query(font-size, 18px, 18px, 20px, 22px);
+                    border: none;
+                    cursor: pointer;
+
+
+
+                    &:hover {
+                        background-color: $background-hover-color;
+                        transition: background-color 0.5s ease;
+
+                        img {
+                            transform: rotate(45deg); // Xoay 45 độ
+                            transition: transform 0.5s ease;
+
+                        }
+                    }
+
+                    img {
+                        width: 20.5px;
+
+                        @include respond-to(xl) {
+                            filter: invert(1);
+
+                        }
+                    }
+
+                    @include respond-to(xl) {
+                        background-color: $secondary-color;
+                        border: 2px solid #0a11281a;
+                        color: $primary-text-color;
+
+                        &:hover {
+                            background-color: $background-secondary-hover;
+                            transition: background-color 0.5s ease;
+
+                            img {
+                                transform: rotate(45deg); // Xoay 45 độ
+                                transition: transform 0.5s ease;
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            .pricing__plan--standard {
+                position: relative;
+                z-index: 2;
+                top: -15px;
+                background-color: $secondary-color;
+                border: 1px solid rgb(10 17 41 / 0%);
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 60px 0px;
+
+                ul {
+                    :nth-child(4) {
+                        opacity: 1;
+
+                    }
+                }
+
+                .pricing__button {
+                    background-color: $secondary-text-color;
+
+                    @include respond-to(xl) {
+                        color: $secondary-color;
+
+                        &:hover {
+                            background-color: $secondary-text-color;
+                        }
+                    }
+
+                    img {
+                        @include respond-to(xl) {
+                            filter: unset;
+                        }
+                    }
+
+                }
+            }
+
+            .pricing__plan--premium {
+                @include moveUp(1s, 0.8s, ease);
+
+                ul {
+
+                    :nth-child(4),
+                    :nth-child(5) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.blog {
+    @include flex-justify-center;
+
+    .blog__container {
+        @include media-query(max-width, 363px, 714px, 714px, 1115px);
+        @include flex-column-align-center;
+        justify-content: center;
+        gap: 30px;
+
+        @include media-query(padding-bottom, 60px, 60px, 60px, 100px);
+
+        .blog__title {
+            text-align: center;
+        }
+
+        .blog__list {
+            @include flex-column-align-center;
+            gap: 24px;
+
+            .blog-card:nth-child(4) {
+                display: none;
+            }
+
+            @include respond-to(md) {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(1px, 1fr));
+
+                .blog-card:nth-child(4) {
+                    display: block;
+                }
+            }
+
+            @include respond-to(xl) {
+                flex-direction: row;
+                display: flex;
+
+                .blog-card:nth-child(4) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .blog-card {
+        border: 1px solid $border-color;
+        border-radius: 10px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .blog-card__image-wrapper {
+            min-height: 250px;
+            max-height: 250px;
+            display: flex;
+            overflow: hidden;
+
+
+            img {
+                transition: transform 0.3s ease;
+                transform-origin: center;
+                cursor: pointer;
+                overflow: hidden;
+                height: 100%;
+
+                &:hover {
+                    transform: scale(1.1);
+
+                }
+
+            }
+        }
+
+        .blog-card__content {
+            padding: 20px;
+            @include flex-column;
+            gap: 8px;
+
+            span {
+                color: $dark-gray-color;
+                @include media-query(font-size, 16px, 18px, 18px, 18px);
+
+            }
+
+            h3 {
+                @include media-query(font-size, 20px, 20px, 20px, 22px);
+
+            }
+
+        }
+
+        .blog__line {
+            background-color: $dark-navy;
+            height: 1px;
+            width: 100%;
+        }
+
+        .blog-card__author {
+            padding: 10px 20px;
+            display: flex;
+        }
+
+        img {
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            // overflow: hidden;
+            // aspect-ratio: 1.4137931034482758 / 1;
+        }
+
+        .blog-card__author {
+            display: flex;
+            gap: 7px;
+        }
+
+    }
+
+    .blog-card__date {
+        background-color: $primary-color;
+        width: 70px;
+        color: $secondary-color;
+        height: 70px;
+        @include flex-center;
+        flex-direction: column;
+        border-radius: 12px;
+        @include media-query(font-size, 18px, 18px, 20px, 22px);
+        position: absolute;
+        right: 20px;
+        bottom: 144px;
+
+
+    }
+}
+
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(100px);
+        /* Bắt đầu từ dưới */
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        /* Kết thúc tại vị trí ban đầu */
+        opacity: 1;
     }
 }

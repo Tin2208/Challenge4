@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
 }
+
 //flex-column-center
 @mixin flex-column-align-center {
     display: flex;
@@ -15,17 +16,20 @@
     display: flex;
     align-items: center;
 }
+
 //flex-center
 @mixin flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 //flex-justify-center
 @mixin flex-justify-center {
     display: flex;
     justify-content: center;
 }
+
 //flex-space-between
 @mixin flex-center-space-between {
     display: flex;
@@ -103,4 +107,72 @@
 @mixin box-shadow {
     box-shadow: 0 10px 60px #0000001a;
 
+}
+
+@mixin moveUp($duration: 1s, $delay: 0s, $easing: ease-in-out) {
+    animation: moveUp $duration $easing $delay;
+
+    @keyframes moveUp {
+        0% {
+            transform: translateY(100px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+@mixin moveRight($duration: 1s, $delay: 0s, $easing: ease-in-out) {
+    animation: moveRight $duration $easing $delay;
+
+    @keyframes moveRight {
+        0% {
+            transform: translateX(100px);
+            /* Bắt đầu từ bên phải */
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(0);
+            /* Kết thúc tại vị trí ban đầu */
+            opacity: 1;
+        }
+    }
+}
+
+@mixin moveLeft($duration: 1s, $delay: 0s, $easing: ease-in-out) {
+    animation: moveLeft $duration $easing $delay;
+
+    @keyframes moveLeft {
+        0% {
+            transform: translateX(-100px);
+            /* Bắt đầu từ bên trái */
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(0);
+            /* Kết thúc tại vị trí ban đầu */
+            opacity: 1;
+
+        }
+
+    }
+
+}
+
+@mixin moveLeftOnScroll($duration: 1s, $delay: 0s, $easing: ease-in-out) {
+    opacity: 0;
+    transform: translateX(-100px);
+    /* Trạng thái ban đầu (ẩn và lệch trái) */
+    transition: transform $duration $easing, opacity $duration $easing $delay;
+
+    &.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+        /* Đưa về vị trí ban đầu và hiện */
+    }
 }

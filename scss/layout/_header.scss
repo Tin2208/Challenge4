@@ -1,25 +1,142 @@
 @import '../base/variables';
 
 .header {
+    // @include flex-justify-center;
+
     .header__container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        margin: auto;
+        @include flex-align-center;
+        @include media-query(max-width, 363px, 714px, 714px, 1115px);
         @include media-query(padding, 16px 20px, 16px 30px, 16px 20px, 16px 20px);
+
+        .header__wrapper {
+            @include flex-align-center;
+            justify-content: space-between;
+            width: 100%;
+        }
 
         .header__nav {
             display: none;
 
+            @include respond-to(xl) {
+                display: block;
+            }
+
             .nav__list {
+                @include flex-align-center;
+                gap: 24px;
+                width: 100%;
+
                 .nav__item {
+
                     a {
-                        img {
-                            width: 20px;
+                        @include flex-align-center;
+                        gap: 10px;
+
+                        h6 {
+                            font-size: 18px;
+
+                        }
+
+                        i {
+                            font-size: 13px;
                         }
                     }
                 }
             }
         }
+
+        .header__nav {
+            .nav__list {
+                display: flex;
+                gap: 20px;
+
+
+                .nav__item {
+                    position: relative; // Để dropdown xuất hiện dựa vào cha
+
+                    &--dropdown {
+                        transition: display 2s ease;
+
+                        .dropdown {
+                            // padding-top: 52px;
+                            @include flex-column;
+                            gap: 12px;
+                            width: max-content;
+                            display: none; // Ẩn dropdown mặc định
+                            position: absolute;
+                            top: 100%; // Hiển thị ngay bên dưới cha
+                            left: 0;
+                            background-color: #fff;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                            padding: 20px 24px;
+                            border-radius: 5px;
+                            left: -61px;
+                            top: 50px;
+                            // top: 10px;
+
+                            .dropdown__link {
+                                cursor: default;
+                                display: inline-block;
+                                font-size: 18px;
+                                color: $primary-text-color;
+                                text-decoration: none;
+                                background-color: $secondary-color;
+
+
+                                p {
+                                    cursor: pointer;
+                                    transition: color 0.3s ease;
+                                    font-weight: bold;
+
+                                    &:hover {
+                                        // background-color: $secondary-color;
+                                        color: $background-hover-color;
+                                        transition: color 0.3s ease;
+                                    }
+                                }
+
+                            }
+                        }
+
+                        &:hover {
+                            .dropdown {
+                                display: flex; // Hiển thị dropdown khi hover
+                                transition: display 0.5s ease;
+
+                            }
+                        }
+
+                        // &:hover::after {
+                        //     content: "";
+                        //     position: absolute;
+                        //     bottom: -300px;
+                        //     /* Khoảng cách dưới phần tử cha */
+                        //     left: 0;
+                        //     width: 100%;
+                        //     height: 300px;
+                        //     /* Độ cao của vùng hover */
+                        //     // background-color: transparent;
+                        // }
+                    }
+
+
+                    .nav__link {
+                        text-decoration: none;
+                        // color: $primary-text-color;
+                        font-size: 18px;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+
+                        &:hover {
+                            color: #ff6f3c;
+                        }
+                    }
+                }
+            }
+        }
+
 
         .header_controls {
             @include flex-align-center;
@@ -67,6 +184,10 @@
             }
 
             .header__menu {
+                @include respond-to(xl) {
+                    display: none;
+                }
+
                 img {
                     @include media-query(width, 32px, 32px, 32px, 32px);
                     @include media-query(height, 32px, 32px, 32px, 32px);

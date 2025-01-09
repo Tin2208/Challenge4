@@ -2,13 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    letter-spacing: -.03em;
 }
 
 body {
     line-height: 1.5;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    font-family: "Work Sans", "Work Sans Placeholder", sans-serif;
+    font-family: "Work Sans", serif
 }
 
 a {
@@ -32,4 +33,10 @@ li {
 
 button {
     font-family: "Work Sans", "Work Sans Placeholder", sans-serif;
+}
+
+h2 {
+    @include media-query(font-size, 30px, 36px, 36px, 48px);
+    color: $primary-text-color;
+    letter-spacing: -.03em;
 }
